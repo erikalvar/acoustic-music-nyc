@@ -1,0 +1,10 @@
+{
+  title: event.title,
+  venue: event.venue,
+  venue_address: event.venue_address,
+  description: event.description,
+  tickets_url: event.tickets_url,
+  image_url: event.image_url,
+  start_time: event.start_time,
+  end_time: event.end_time,
+  }

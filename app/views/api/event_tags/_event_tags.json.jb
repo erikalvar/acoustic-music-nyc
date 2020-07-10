@@ -1,0 +1,4 @@
+{
+  event_id: event_tag.event_id,
+  tag_id: event_tag.tag_id
+}
