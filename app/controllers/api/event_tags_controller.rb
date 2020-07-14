@@ -1,5 +1,7 @@
 class Api::EventTagsController < ApplicationController
 
+  before_action :authenticate_user, except: :show
+
   def create
     @event_tag = EventTag.new(
       event_id: params[:event_id],

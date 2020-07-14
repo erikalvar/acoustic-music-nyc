@@ -1,5 +1,7 @@
 class Api::EventsController < ApplicationController
 
+  before_action :authenticate_user, except: [:index, :show]
+
   def index
     @events = Event.all
     render "index.json.jb"
@@ -13,12 +15,19 @@ class Api::EventsController < ApplicationController
       description: params[:description],
       tickets_url: params[:tickets_url],
       image_url: params[:image_url],
-      user_id: params[:user_id],
-      moderator_id: params[:moderator_id],
+      user_id: current_user.id,
       start_time: params[:start_time],
       end_time: params[:end_time]
     )
     if @event.save
+      # create event_tags
+      
+      eval(params[:tag_ids]).each do |tag_id|
+        EventTag.create(
+          event_id: @event.id,
+          tag_id: tag_id
+        )
+      end
       render "show.json.jb"
     else
       render json: {errors: @event.errors.full_messages}, status: :unprocessable_entity
@@ -42,11 +51,16 @@ class Api::EventsController < ApplicationController
     @event.description = params[:description] || @event.description
     @event.tickets_url = params[:tickets_url] || @event.tickets_url
     @event.image_url = params[:image_url] || @event.image_url
-    @event.user_id = params[:user_id] || @event.user_id
-    @event.moderator_id = params[:moderator_id] || @event.moderator_id
     @event.start_time = params[:start_time] || @event.start_time
     @event.end_time = params[:end_time] || @event.end_time
     if @event.save
+      @event.event_tags.destroy_all
+      eval(params[:tag_ids]).each do |tag_id|
+        EventTag.create(
+          event_id: @event.id,
+          tag_id: tag_id
+        )
+      end
       render "show.json.jb"
     else
       render json: {message: @event.errors.full_messages}, status: :unprocessable_entity

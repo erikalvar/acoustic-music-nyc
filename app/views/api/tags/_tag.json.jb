@@ -1,3 +1,4 @@
 {
+  id: tag.id,
   name: tag.name
 }
