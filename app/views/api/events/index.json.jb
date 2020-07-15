@@ -1,3 +1,14 @@
-@events.map do |event|
+events = @events.map do |event|
   render partial: "event.json.jb", locals: { event: event }
 end
+
+events.map do |event|
+  @event = Event.find_by(id: event[:id])
+  event[:tags] = @event.tags.map do |tag|
+    render partial: "/api/tags/tag.json.jb", locals: { tag: tag }
+  end
+end
+
+events = events.sort_by { |v| v[:start_time]}
+
+events

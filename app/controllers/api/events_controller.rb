@@ -21,7 +21,6 @@ class Api::EventsController < ApplicationController
     )
     if @event.save
       # create event_tags
-      
       eval(params[:tag_ids]).each do |tag_id|
         EventTag.create(
           event_id: @event.id,
