@@ -19,10 +19,10 @@ class Api::UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    if @user
+    if @user == current_user
       render "show.json.jb"
     else
-      render json: {errors: "User does not exist."}, status: :unprocessable_entity
+      render json: {}, status: :unauthorized
     end
   end
 
