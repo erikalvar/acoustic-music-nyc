@@ -7,8 +7,7 @@ class Api::UsersController < ApplicationController
       username: params[:username],
       email: params[:email],
       password: params[:password],
-      password_confirmation: params[:password_confirmation],
-      moderator: false
+      password_confirmation: params[:password_confirmation]
     )
     if @user.save
       render "show.json.jb"

@@ -3,9 +3,10 @@ class Api::EventsController < ApplicationController
   before_action :authenticate_user, except: [:index, :show]
 
   def index
-    @events = Event.all
+    @events = Event.all.order(:start_time)
     render "index.json.jb"
   end
+
 
   def create
     @event = Event.new(
