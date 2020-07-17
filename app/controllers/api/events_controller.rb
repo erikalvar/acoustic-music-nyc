@@ -67,9 +67,13 @@ class Api::EventsController < ApplicationController
   end
 
   def destroy
-    @event = Event.find_by(id: params[:id])
-    @event.destroy
-    render json: {message: "Event successfully deleted."}
+    if current_user.moderator == true
+      @event = Event.find_by(id: params[:id])
+      @event.destroy
+      render json: {message: "Event successfully deleted."}
+    else
+      render json: {}, status: :unauthorized
+    end
   end
 
 end
