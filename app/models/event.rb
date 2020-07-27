@@ -11,7 +11,6 @@ class Event < ApplicationRecord
   validates :description, presence: true, length: { minimum: 20 }
   validates :start_time, presence: true
   validates :end_time, presence: true
-  validates :user_id, presence: true
 
 
 end
