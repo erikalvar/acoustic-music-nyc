@@ -54,6 +54,9 @@ class Api::EventsController < ApplicationController
     @event.image_url = params[:image_url] || @event.image_url
     @event.start_time = params[:start_time] || @event.start_time
     @event.end_time = params[:end_time] || @event.end_time
+    if params[:approved] && current_user.moderator
+      @event.moderator_id = current_user.id
+    end
     if @event.save
       @event.event_tags.destroy_all
       if params[:tag_ids]
@@ -72,7 +75,7 @@ class Api::EventsController < ApplicationController
   end
 
   def destroy
-    if current_user.moderator == true
+    if current_user.moderator
       @event = Event.find_by(id: params[:id])
       @event.destroy
       render json: {message: "Event successfully deleted."}
