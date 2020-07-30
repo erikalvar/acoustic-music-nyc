@@ -1,1 +1,5 @@
-render partial: "users.json.jb", locals: { user: @user }
+user = render partial: "user.json.jb", locals: { user: @user }
+user[:favorites] = @user.favorites.map do |favorite|
+  render partial: "/api/favorites/favorite.json.jb", locals: { favorite: favorite }
+end
+user

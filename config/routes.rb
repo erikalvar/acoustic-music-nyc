@@ -23,5 +23,10 @@ Rails.application.routes.draw do
     get "/event_tags/:id" => "event_tags#show"
     delete "/event_tags/:id" => "event_tags#destroy"
 
+    get "/favorites" => "favorites#index"
+    post "/favorites" => "favorites#create"
+    get "/favorites/:id" => "favorites#show"
+    delete "/favorites/:id" => "favorites#destroy"
+
   end
 end
