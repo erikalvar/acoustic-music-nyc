@@ -1,5 +1,5 @@
 {
   id: tag.id,
   name: tag.name,
-  type: tag.type
+  classification: tag.classification
 }
