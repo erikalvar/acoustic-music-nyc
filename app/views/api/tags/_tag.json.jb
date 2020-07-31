@@ -1,4 +1,5 @@
 {
   id: tag.id,
-  name: tag.name
+  name: tag.name,
+  type: tag.type
 }
