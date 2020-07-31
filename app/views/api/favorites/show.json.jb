@@ -1,1 +1,5 @@
-render partial: "favorite.json.jb", locals: { favorite: @favorite }
+favorite =render partial: "favorite.json.jb", locals: { favorite: @favorite }
+# favorite[:events] = @favorite.events.map do |event|
+#   render partial: "/api/events/event.json.jb", locals: { event: event }
+# end
+favorite

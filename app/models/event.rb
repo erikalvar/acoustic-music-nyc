@@ -2,6 +2,8 @@ class Event < ApplicationRecord
 
   has_many :event_tags
   has_many :tags, through: :event_tags
+  # has_many :favorites
+  # has_many :users, through: :favorites
   belongs_to :user
 
   # attribute :moderator_id, :integer, default: nil
