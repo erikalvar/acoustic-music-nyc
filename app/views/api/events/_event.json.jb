@@ -8,5 +8,6 @@
   image_url: event.image_url,
   start_time: event.start_time,
   end_time: event.end_time,
-  moderator_id: event.moderator_id || 0
+  moderator_id: event.moderator_id || 0,
+  favorited: event.favorited_by?(current_user)
   }
