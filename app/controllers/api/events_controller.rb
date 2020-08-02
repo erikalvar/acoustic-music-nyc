@@ -84,4 +84,9 @@ class Api::EventsController < ApplicationController
     end
   end
 
+  def toggle_favorite
+    @event = Event.find_by(id: params[:id])
+    current_user.favorited?(@event)  ?current_user.unfavorite(@event) : current_user.favorite(@event)
+  end
+
 end

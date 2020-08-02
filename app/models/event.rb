@@ -6,6 +6,8 @@ class Event < ApplicationRecord
   # has_many :users, through: :favorites
   belongs_to :user
 
+  acts_as_favoritable
+
   # attribute :moderator_id, :integer, default: nil
 
   validates :title, presence: true, length: { minimum: 5 }

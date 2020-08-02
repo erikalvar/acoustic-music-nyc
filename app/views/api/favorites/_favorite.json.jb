@@ -1,5 +1,0 @@
-{
-  id: favorite.id,
-  user_id: favorite.user_id,
-  event_id: favorite.event_id
-}

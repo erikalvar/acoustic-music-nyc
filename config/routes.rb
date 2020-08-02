@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get "/events/:id" => "events#show"
     patch "/events/:id" => "events#update"
     delete "/events/:id" => "events#destroy"
+    post "/events/:id/toggle_favorite" =>"events#toggle_favorite"
 
     post "/sessions" => "sessions#create"
 
@@ -23,10 +24,10 @@ Rails.application.routes.draw do
     get "/event_tags/:id" => "event_tags#show"
     delete "/event_tags/:id" => "event_tags#destroy"
 
-    get "/favorites" => "favorites#index"
-    post "/favorites" => "favorites#create"
-    get "/favorites/:id" => "favorites#show"
-    delete "/favorites/:id" => "favorites#destroy"
+    # get "/favorites" => "favorites#index"
+    # post "/favorites" => "favorites#create"
+    # get "/favorites/:id" => "favorites#show"
+    # delete "/favorites/:id" => "favorites#destroy"
 
   end
 end

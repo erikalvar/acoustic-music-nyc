@@ -6,7 +6,8 @@ class User < ApplicationRecord
   validates :username, presence: true, length: { minimum: 4 }, uniqueness: true
 
   has_many :events, dependent: :destroy
-  has_many :favorites
-  has_many :favorited_events, through: :favorites, source: :event
+  # has_many :favorites, dependent: :destroy
+  # has_many :favorited_events, through: :favorites, source: :event
+  acts_as_favoritor
 
 end
