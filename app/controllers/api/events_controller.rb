@@ -1,6 +1,7 @@
 class Api::EventsController < ApplicationController
 
   before_action :authenticate_user, except: [:index, :show]
+  before_action :require_moderator, only: [:update, :destroy]
 
   def index
     @events = Event.where("end_time >= ?", DateTime.now).order(:start_time)
@@ -87,6 +88,7 @@ class Api::EventsController < ApplicationController
   def toggle_favorite
     @event = Event.find_by(id: params[:id])
     current_user.favorited?(@event)  ?current_user.unfavorite(@event) : current_user.favorite(@event)
+    render json: {favorited: current_user.favorited?(@event)}
   end
 
 end

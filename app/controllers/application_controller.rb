@@ -26,5 +26,11 @@ class ApplicationController < ActionController::Base
       render json: {}, status: :unauthorized
     end
   end
+
+  def require_moderator
+    unless current_user && current_user.moderator == true
+      render json: {message: "moderator action only"}, status: :unauthorized
+    end        
+  end
   
 end

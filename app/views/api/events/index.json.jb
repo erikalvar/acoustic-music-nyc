@@ -3,6 +3,5 @@ events = @events.map do |event|
   e[:tags] = event.tags.map do |tag|
     render partial: "/api/tags/tag.json.jb", locals: { tag: tag }
   end
-  # e[:favorites_info] = event.favorites.where(user_id: current_user.id).first
   e
 end
