@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'localhost:8080', 'https://heuristic-pare-ae9758.netlify.app'
+    origins 'localhost:8080', 'https://heuristic-pare-ae9758.netlify.app', 'https://www.acousticmusicnyc.com'
 
     resource '*',
       headers: :any,
